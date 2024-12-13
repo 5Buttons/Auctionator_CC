@@ -5,7 +5,7 @@ Based on Auctionator+ by BlueAo: https://forum.warmane.com/showthread.php?t=4129
 
 Changelog for Chromiecraft: 
 
-- Slow Scan is the standard mode of scanning because Azerothcore doesnt support Fast Scan so far.
+- Slow Scan is the standard mode of scanning because Chromiecraft/Azerothcore doesnt support Fast Scan so far.
 - Last Scan will show time() of last Slow Scan
 - Includes DepositFix for changed Deposit Values on Chromiecraft
 - Removed some bloat

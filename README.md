@@ -1,7 +1,7 @@
 # Auctionator_CC
 Auctionator for Chromiecraft
 
-Based on Auctionator+ by BlueAo and all credit to him and the original creator of Auctionator: https://forum.warmane.com/showthread.php?t=412904&p=3030654&viewfull=1#post3030654. I only made some small adjustments for Chromiecraft. 
+Based on Auctionator+ by BlueAo and all credit to him and the original creator: https://forum.warmane.com/showthread.php?t=412904&p=3030654&viewfull=1#post3030654. I only made some small adjustments for Chromiecraft. 
 
 Changelog for Chromiecraft: 
 

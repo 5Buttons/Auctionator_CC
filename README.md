@@ -5,7 +5,7 @@ Based on Auctionator+ by BlueAo and all credit to him and the original creator: 
 
 Changelog for Chromiecraft: 
 
-- Slow Scan is the standard mode of scanning because Chromiecraft/Azerothcore doesnt support `getAll`  needed for a fast scan. (This might be fixed very soon though: https://github.com/azerothcore/azerothcore-wotlk/pull/20511, so i dont know how long this version will be useful)
+- Slow Scan is the standard mode of scanning because Chromiecraft/Azerothcore doesnt support `getAll`  needed for a fast scan. (This might be fixed very soon though: https://github.com/azerothcore/azerothcore-wotlk/pull/20511)
 - Includes DepositFix for changed Deposit Values on Chromiecraft
 - Some minor changes
 

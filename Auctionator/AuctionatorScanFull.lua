@@ -416,7 +416,7 @@ function Atr_UpdateFullScanFrame()
 	if (AUCTIONATOR_LAST_SCAN_TIME) then
 		Atr_FullScanDBwhen:SetText (date ("%A, %B %d at %I:%M %p", AUCTIONATOR_LAST_SCAN_TIME));
 	else
-		Atr_FullScanDBwhen:SetText (ZT("Slow Scan is always possible"));
+		Atr_FullScanDBwhen:SetText (ZT("This is only for fast scan"));
 	end
 
 	_, gCanQueryAll = CanSendAuctionQuery();
@@ -424,7 +424,7 @@ function Atr_UpdateFullScanFrame()
 	if (gCanQueryAll) then
 		Atr_FullScanStatus:SetText ("");
 		Atr_FullScanStartButton:Enable();
-		Atr_FullScanNext:SetText(ZT("Slow Scan is always possible"));
+		Atr_FullScanNext:SetText(ZT("This only affects Fast Scan. Slow Scan is always possible"));
 	else	
 		Atr_FullScanStartButton:Disable();
 

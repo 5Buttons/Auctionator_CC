@@ -10,3 +10,5 @@ Changelog for Chromiecraft:
 - Includes DepositFix for changed Deposit Values on Chromiecraft
 - Removed some bloat
 
+Issues: 
+- Only localized for enUS Client

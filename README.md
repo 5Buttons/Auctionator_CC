@@ -1,13 +1,8 @@
 # Auctionator_CC
-Auctionator for Chromiecraft
+Auctionator +DepositFix for Chromiecraft
 
-Based on Auctionator+ by BlueAo and all credit to him and the original creator: https://forum.warmane.com/showthread.php?t=412904&p=3030654&viewfull=1#post3030654. I only made some small adjustments for Chromiecraft. 
+Based on Auctionator+ by BlueAo and all credit to him and the original creator: https://forum.warmane.com/showthread.php?t=412904&p=3030654&viewfull=1#post3030654.
+I just added a very simple fix for the reduced deposit costs on Chromiecraft. 
 
-Changelog for Chromiecraft: 
 
-- Slow Scan is the standard mode of scanning because Chromiecraft/Azerothcore doesnt support `getAll`  needed for a fast scan. (This might be fixed very soon though: https://github.com/azerothcore/azerothcore-wotlk/pull/20511)
-- Includes DepositFix for changed Deposit Values on Chromiecraft
-- Some minor changes
 
-Issues: 
-- Only localized for enUS Client

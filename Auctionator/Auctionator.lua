@@ -925,7 +925,7 @@ function Atr_OnLoad()
 
 	Atr_ShoppingListsInit();
 
-	zc.msg_anm ("Based on Auctionator+ by BlueAo|cFFFF1493 modified by Fivebuttons")
+	zc.msg_anm ("Based on Auctionator+ by BlueAo|cFFFF8C00 +DepositFix for ChromieCraft")
 	
 	EnableDisableDElogging ()
 

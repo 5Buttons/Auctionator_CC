@@ -85,7 +85,7 @@ function Atr_FullScanStart()
 			zz ("QueryAuctionItems (slow) called")
 		else
 			gAtr_FullScanState = ATR_FS_STARTED;
-			QueryAuctionItems ("", nil, nil, 0, 0, 0, 0, 0, nil, true);
+			QueryAuctionItems ("", nil, nil, 0, 0, 0, 0, false, -1, true);
 			zz ("QueryAuctionItems (getAll) called");
 		end
 		
@@ -101,13 +101,13 @@ function Atr_FullScanFrameIdle()
 	
 	if (gAtr_FullScanState == ATR_FS_NULL) then
 
-		gDoSlowScan = not IsControlKeyDown()
+		gDoSlowScan = IsControlKeyDown()
 
 		if (gDoSlowScan) then
-			Atr_FullScanStartButton:SetText ("Start Scan")
+			Atr_FullScanStartButton:SetText ("Slow scan")
 			Atr_FullScanStartButton:Enable();
 		else
-			Atr_FullScanStartButton:SetText ("Fast Scan (not working on CC)")
+			Atr_FullScanStartButton:SetText ("Start Scanning")
 			if (gCanQueryAll) then
 				Atr_FullScanStartButton:Enable();
 			else
@@ -128,7 +128,7 @@ function Atr_FullScanFrameIdle()
 
 	if (gAtr_FullScanState == ATR_FS_SLOW_QUERY_NEEDED and CanSendAuctionQuery()) then
 	--QueryAuctionItems ("", nil, nil, 0, 0, 0, gSlowScanPage, 0, nil)
-		QueryAuctionItems ("", nil, nil, nil, nil, nil, gSlowScanPage, nil, nil)
+		QueryAuctionItems ("", nil, nil, 0, 0, 0, gSlowScanPage, false, -1)
 		gAtr_FullScanState = ATR_FS_SLOW_QUERY_SENT
 		if (gSlowScanTotalPages) then
 			statusText = string.format ("Page %s of %s", gSlowScanPage+1, gSlowScanTotalPages)
@@ -206,13 +206,13 @@ function Atr_FullScanAnalyze()
 	local dataIsGood = true
 
 	-- local name, texture, count, quality, canUse, level, huh, minBid, minIncrement, buyoutPrice, bidAmount, highBidder, bidderFullName, owner, ownerFullName, saleStatus
-	local name, texture, count, quality, canUse, level, minBid, minIncrement, buyoutPrice, bidAmount, highBidder, owner, saleStatus
+	local name, count, quality, buyoutPrice, owner
 
 	if (numBatchAuctions > 0) then
 		for x = gFullScanPosition, numBatchAuctions do
 
 			--name, texture, count, quality, canUse, level, huh, minBid, minIncrement, buyoutPrice, bidAmount, highBidder, bidderFullName, owner, ownerFullName, saleStatus   = GetAuctionItemInfo("list", x);
-			name, texture, count, quality, canUse, level, minBid, minIncrement, buyoutPrice, bidAmount, highBidder, owner, saleStatus  = GetAuctionItemInfo("list", x)
+			name, _, count, quality, _, _, _, _, buyoutPrice, _, _, owner  = GetAuctionItemInfo("list", x)
 
 			gNumScanned = gNumScanned + 1
 			
@@ -358,7 +358,7 @@ function Atr_FullScanUpdateDB()
 	
 	Atr_FullScanResults:SetBackdropColor (0.3, 0.3, 0.4);
 	
-	if (gDoSlowScan) then
+	if (not gDoSlowScan) then
 		AUCTIONATOR_LAST_SCAN_TIME = time();
 	end
 	
@@ -416,7 +416,7 @@ function Atr_UpdateFullScanFrame()
 	if (AUCTIONATOR_LAST_SCAN_TIME) then
 		Atr_FullScanDBwhen:SetText (date ("%A, %B %d at %I:%M %p", AUCTIONATOR_LAST_SCAN_TIME));
 	else
-		Atr_FullScanDBwhen:SetText (ZT("This is only for fast scan"));
+		Atr_FullScanDBwhen:SetText (ZT("Never"));
 	end
 
 	_, gCanQueryAll = CanSendAuctionQuery();
@@ -424,7 +424,7 @@ function Atr_UpdateFullScanFrame()
 	if (gCanQueryAll) then
 		Atr_FullScanStatus:SetText ("");
 		Atr_FullScanStartButton:Enable();
-		Atr_FullScanNext:SetText(ZT("This only affects Fast Scan. Slow Scan is always possible"));
+		Atr_FullScanNext:SetText(ZT("Now"));
 	else	
 		Atr_FullScanStartButton:Disable();
 
@@ -434,16 +434,16 @@ function Atr_UpdateFullScanFrame()
 			when = math.floor (when/60);
 		
 			if (when == 0) then
-				Atr_FullScanNext:SetText (ZT("Slow Scan is always possible"));
+				Atr_FullScanNext:SetText (ZT("in less than a minute"));
 			elseif (when == 1) then
-				Atr_FullScanNext:SetText (ZT("Slow Scan is always possible"));
+				Atr_FullScanNext:SetText (ZT("in about one minute"));
 			elseif (when > 0) then
-				Atr_FullScanNext:SetText (string.format (ZT("Slow Scan is always possible"), when));
+				Atr_FullScanNext:SetText (string.format (ZT("in about %d minutes"), when));
 			else
-				Atr_FullScanNext:SetText (ZT("Slow Scan is always possible"));
+				Atr_FullScanNext:SetText (ZT("unknown"));
 			end
 		else
-			Atr_FullScanNext:SetText (ZT("Slow Scan is always possible"));
+			Atr_FullScanNext:SetText (ZT("unknown"));
 		end
 	end
 end

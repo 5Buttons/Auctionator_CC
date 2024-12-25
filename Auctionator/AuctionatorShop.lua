@@ -305,6 +305,8 @@ function Atr_Search_Onclick ()
 
 	local searchText = Atr_Search_Box:GetText();
 
+	if (string.gsub(searchText, "%s+", "") == "" or searchText == nil) then return end
+
 	Atr_Search_Button:Disable();
 	Atr_Adv_Search_Button:Disable();
 	Atr_Buy1_Button:Disable();
@@ -967,8 +969,6 @@ function Atr_Adv_Search_Do()
 	end
 	
 	if (itemRarity ~= nil) then searchText = itemRarity.."/"..searchText end
-	
-	print(itemRarity)
 	
 	Atr_SetSearchText(searchText);
 

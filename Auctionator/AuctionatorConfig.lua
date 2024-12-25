@@ -75,9 +75,9 @@ end
 function Atr_SetupOptionsFrame()
 
 	local expText = "<html><body>"
-					.."<p>"..ZT("The latest information on Auctionator can be found at").." https://forum.warmane.com/showthread.php?t=412904.".."</p>"
+					.."<p>"..ZT("The latest information on Auctionator can be found at").." auctionator-addon.com.".."</p>"
 					.."<p><br/>"
-					.."Many thanks to all contributors "
+					.."MoP disenchanting data courtesy of the Norganna's AddOns (the Auctioneer folks)"
 					.."</p>"
 					.."<p><br/>"
 					.."|cffaaaaaa"..string.format (ZT("German translation courtesy of %s"),  "|rCkaotik").."<br/>"

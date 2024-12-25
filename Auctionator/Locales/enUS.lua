@@ -9,8 +9,7 @@ AtrL["SCAN_EXPLANATION"] =  "<br/>"
 							.."<br/><br/>"
 
 							..""
-							.."On|cFFFF8C00 Chromiecraft|r the Fast Scan option is not yet supported. Instead|cFFFFFF00 slow scanning|r will be used. "
-							.."As the name suggests Slow Scan might take some time. The Fast Scan option can be still be accessed by holding down the Control key before clicking "
+							.."If normal scanning causes problems, you can try |cFFff5555slow scanning|r instead.  Just hold down the Control key before clicking "
 							.."the Start Scanning button."
 							.."<br/><br/>"
 							

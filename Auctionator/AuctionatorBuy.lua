@@ -179,7 +179,8 @@ function Atr_Buy_SendQuery ()
 		local queryString = zc.UTF8_Truncate (gAtr_Buy_ItemName,63);	-- attempting to reduce number of disconnects
 
 		-- QueryAuctionItems (queryString, "", "", nil, 0, 0, gAtr_Buy_CurPage, nil, nil);
-		QueryAuctionItems (queryString, nil, nil, nil, nil, nil, gAtr_Buy_CurPage, nil, nil);
+		-- last parameter, qualityIndex, causes auction to fail when 0 is used.
+		QueryAuctionItems (queryString, nil, nil, 0, 0, 0, gAtr_Buy_CurPage, false, -1);
 	end
 		
 end

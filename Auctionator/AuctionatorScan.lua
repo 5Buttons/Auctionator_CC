@@ -17,7 +17,7 @@ local AUCTION_CLASS_ARMOR 		 = 2;
 
 local gAllScans = {};
 
-local BATTLE_PET_ITEMID = 82800
+-- local BATTLE_PET_ITEMID = 82800
 
 local BIGNUM = 999999999999;
 
@@ -115,7 +115,6 @@ function AtrSearch:Init (searchText, IDstring, itemLink, rescanThreshold)
 		
 	end
 
-	
 end
 
 -----------------------------------------
@@ -285,6 +284,8 @@ function AtrSearch:Start ()
 	if (self.searchText == "") then
 		return;
 	end
+	
+	
 	
 	if (Atr_IsCompoundSearch (self.searchText)) then
 			
@@ -688,7 +689,6 @@ function Atr_ParseCompoundSearch (searchString)
 	end	
 
 	--QueryAuctionItems("name", minLevel, maxLevel, invTypeIndex, classIndex, subclassIndex, page, isUsable, qualityIndex, getAll)
-	--print(queryString, itemClass, itemSubclass, minLevel, maxLevel, minItemLevel, maxItemLevel)
 	return queryString, itemClass, itemSubclass, minLevel, maxLevel, minItemLevel, maxItemLevel, qualityIndex
 end
 
@@ -733,7 +733,8 @@ function AtrSearch:Continue()
 			if (self.exactMatchText) then
 				queryString = self.exactMatchText
 			end
-			
+
+
 			-- skip nested shopping lists or compound searches
 			while (Atr_IsShoppingListSearch(queryString) or Atr_IsCompoundSearch(queryString)) do
 				zc.md ("Skipping ", queryString);
@@ -755,7 +756,7 @@ function AtrSearch:Continue()
 
 		--zz (queryString, "  page:", self.current_page);
 		
-		QueryAuctionItems (queryString, minLevel, maxLevel, nil, itemClass, itemSubclass, self.current_page, nil, qualityIndex);
+		QueryAuctionItems (queryString, minLevel, maxLevel, 0, itemClass, itemSubclass, self.current_page, 0, qualityIndex);
 
 		self.query_sent_when	= gAtr_ptime;
 		self.processing_state	= KM_POSTQUERY;
@@ -790,7 +791,6 @@ end
 -----------------------------------------
 
 function AtrSearch:Finish()
-
 	local finishTime = time();
 	
 	self.processing_state	= KM_NULL_STATE;
@@ -837,8 +837,9 @@ function AtrSearch:Finish()
 					end
 				end
 			else		-- not in scandb
-				local IDstring = "***"..itemname				
-				self.items[IDstring] = Atr_FindScanAndInit (IDstring, itemname)
+			-- don't want the blanks on result page
+				--local IDstring = "***"..itemname				
+				--self.items[IDstring] = Atr_FindScanAndInit (IDstring, itemname)
 			end
 		end
 	end
@@ -866,6 +867,8 @@ function AtrSearch:Finish()
 	
 	local x = 1;
 	self.sortedScans = {};
+	
+
 	
 	for IDstring,scn in pairs (self.items) do
 	

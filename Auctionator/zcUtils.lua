@@ -1002,16 +1002,21 @@ end
 -----------------------------------------
 
 function zc.CopyDeep (dest, src)
+    -- Add nil check at the start
+    if src == nil then
+        return dest
+    end
 
-	for n, v in pairs (src) do
-		if (type(v) == "table") then
-			dest[n] = {};
-			zc.CopyDeep(dest[n], v);
-		else
-			dest[n] = v;
-		end
-	end
+    for n, v in pairs(src) do
+        if type(v) == "table" then
+            dest[n] = {}
+            zc.CopyDeep(dest[n], v)
+        else
+            dest[n] = v
+        end
+    end
 
+    return dest
 end
 
 -----------------------------------------
@@ -1076,7 +1081,7 @@ function zc.printstack (options)
 
 				if (a) then
 					filename = string.sub (v,a+1,b-1);
-					filename = string.gsub (filename, "\.lua", "");
+					filename = string.gsub (filename, ".lua", "");
 				end
 
 				local a,b = string.find (v, "in function `.*\'");
